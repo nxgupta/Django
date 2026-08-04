@@ -1,0 +1,59 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Chai aur Django{% endblock %}</title>
+    
+    <!-- Native Tailwind v4 Engine Injection -->
+    {% tailwind_css %}
+</head>
+<body class="bg-neutral-50 text-neutral-900 min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- Modern Premium Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo Layout Container -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 bg-amber-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-xs">
+                        ☕
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-neutral-900">
+                        Chai<span class="text-amber-600">Aur</span>Django
+                    </span>
+                </div>
+
+                <!-- Navigation Route Links Layout Row -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="/" class="text-amber-600 transition-colors">Home</a>
+                    <a href="/admin/" class="text-neutral-600 hover:text-amber-600 transition-colors">Admin Dashboard</a>
+                </div>
+
+                <!-- Action Button Segment Container -->
+                <div class="flex items-center">
+                    <a href="/admin/" class="inline-flex items-center px-4 py-2 text-xs font-semibold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition-all">
+                        Backend Login →
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Application Screen Real-Estate Content Block Area -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Global Application Footer Element -->
+    <footer class="bg-white border-t border-neutral-200 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-neutral-500">
+            &copy; {% now "Y" %} Chai aur Django Learning Framework Setup. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

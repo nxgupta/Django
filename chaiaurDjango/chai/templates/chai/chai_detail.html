@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ chai.name }} | Premium Selection
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    
+    <!-- Breadcrumb Navigation Links -->
+    <nav class="flex mb-8 text-sm font-medium text-neutral-500" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="/" class="hover:text-amber-600 transition-colors">Home</a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <span class="mx-2 text-neutral-400">/</span>
+                    <span class="text-neutral-800 font-semibold" aria-current="page">{{ chai.name }}</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Two-Column Product Display Profile -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 bg-white border border-neutral-200 rounded-3xl p-6 md:p-10 shadow-xs">
+        
+        <!-- Column 1: Image Showcase Area (Spans 5 Columns on Desktop) -->
+        <div class="lg:col-span-5 flex flex-col justify-center">
+            <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-neutral-50 border border-neutral-100 shadow-inner">
+                {% if chai.image %}
+                    <img class="w-full h-full object-cover" src="{{ chai.image.url }}" alt="{{ chai.name }}" />
+                {% else %}
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-amber-50 text-amber-600 gap-2">
+                        <span class="text-4xl">☕</span>
+                        <span class="text-sm font-semibold">No Image Available</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Column 2: Details & Pricing Content (Spans 7 Columns on Desktop) -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+            <div>
+                <!-- Category Label Tag -->
+                {% if chai.type %}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 uppercase tracking-wider mb-4">
+                    {{ chai.type }}
+                </span>
+                {% endif %}
+
+                <!-- Core Information Header Row -->
+                <h1 class="text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
+                    {{ chai.name }}
+                </h1>
+                
+                <!-- Pricing Meta Value Indicator -->
+                <div class="mt-4 flex items-baseline gap-2">
+                    <span class="text-4xl font-black text-neutral-900">₹{{ chai.price|default:"120" }}</span>
+                    <span class="text-sm text-neutral-500 font-medium">/ per serving pot</span>
+                </div>
+
+                <!-- Descriptive Information Block Block -->
+                <div class="mt-6 border-t border-neutral-100 pt-6">
+                    <h3 class="text-sm font-bold text-neutral-900 uppercase tracking-wider">Aroma Description</h3>
+                    <p class="mt-2 text-base text-neutral-600 leading-relaxed">
+                        {{ chai.description|default:"No description has been added for this unique flavor recipe profile yet. Please explore our server backend records to configure individual notes." }}
+                    </p>
+                </div>
+
+                <!-- Premium Static Feature Mock Row -->
+                <div class="mt-6 bg-neutral-50 rounded-xl p-4 border border-neutral-100 grid grid-cols-2 gap-4 text-center">
+                    <div>
+                        <span class="block text-xs font-medium text-neutral-400 uppercase">Brew Time</span>
+                        <span class="text-sm font-bold text-neutral-800">5 - 7 Mins</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-medium text-neutral-400 uppercase">Serving Temperature</span>
+                        <span class="text-sm font-bold text-neutral-800">Piping Hot (95°C)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interacting Dashboard Control Actions Footer Row -->
+            <div class="mt-8 pt-6 border-t border-neutral-100 flex flex-col sm:flex-row gap-4">
+                <a href={% url "all_chai" %} class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-neutral-700 bg-white border border-neutral-300 hover:bg-neutral-50 active:bg-neutral-100 rounded-xl transition-all shadow-xs">
+                    ← Back to Menu
+                </a>
+                <button onclick="alert('Order Feature coming soon!')" class="flex-1 inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 active:bg-amber-800 rounded-xl transition-all shadow-xs cursor-pointer">
+                    Order Fresh Brew Now
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
